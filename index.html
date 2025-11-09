@@ -26,11 +26,16 @@
                 <label for="resena" class="block text-gray-700 font-bold mb-2">Reseña</label>
                 <textarea id="resena" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="4" required></textarea>
             </div>
+            <div class="mb-4">
+                <label for="imagen" class="block text-gray-700 font-bold mb-2">URL de la Imagen</label>
+                <input type="url" id="imagen" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Guardar</button>
         </form>
         <table class="min-w-full bg-white">
             <thead>
                 <tr>
+                    <th class="py-2 px-4 border-b-2 border-gray-300 text-left text-sm font-semibold text-gray-600">Imagen</th>
                     <th class="py-2 px-4 border-b-2 border-gray-300 text-left text-sm font-semibold text-gray-600">Título</th>
                     <th class="py-2 px-4 border-b-2 border-gray-300 text-left text-sm font-semibold text-gray-600">Año</th>
                     <th class="py-2 px-4 border-b-2 border-gray-300 text-left text-sm font-semibold text-gray-600">Calificación</th>
@@ -38,7 +43,6 @@
                 </tr>
             </thead>
             <tbody id="cuerpoTablaPeliculas">
-                <!-- Los registros de las películas se añadirán aquí -->
             </tbody>
         </table>
     </div>
@@ -47,27 +51,24 @@
         document.getElementById('formularioPelicula').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Obtener valores del formulario
             const titulo = document.getElementById('titulo').value;
             const anio = document.getElementById('anio').value;
             const calificacion = document.getElementById('calificacion').value;
             const resena = document.getElementById('resena').value;
+            const imagen = document.getElementById('imagen').value;
 
-            // Crear una nueva fila en la tabla
             const nuevaFila = document.createElement('tr');
 
-            // Añadir celdas a la fila
             nuevaFila.innerHTML = `
+                <td class="py-2 px-4 border-b border-gray-300"><img src="${imagen}" alt="${titulo}" class="w-20 h-28 object-cover rounded"></td>
                 <td class="py-2 px-4 border-b border-gray-300">${titulo}</td>
                 <td class="py-2 px-4 border-b border-gray-300">${anio}</td>
                 <td class="py-2 px-4 border-b border-gray-300">${calificacion}</td>
                 <td class="py-2 px-4 border-b border-gray-300">${resena}</td>
             `;
 
-            // Añadir la nueva fila al cuerpo de la tabla
             document.getElementById('cuerpoTablaPeliculas').appendChild(nuevaFila);
 
-            // Limpiar el formulario
             document.getElementById('formularioPelicula').reset();
         });
     </script>
